@@ -15,16 +15,18 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        return view('idea.index', [
-            'ideas' => Idea::with('user', 'category', 'status')
-                ->addSelect(['voted_by_user' => Vote::select('id')
+        $ideas = Idea::with('user', 'category', 'status')
+            ->addSelect([
+                'voted_by_user' => Vote::select('id')
                     ->where('user_id', auth()->id())
                     ->whereColumn('idea_id', 'ideas.id')
-                ])
-                ->withCount('votes')
-                ->orderBy('id', 'desc')
-                ->simplePaginate(Idea::PAGINATION_COUNT),
-        ]);
+            ])
+            ->withCount('votes')
+            ->latest('id')
+            ->simplePaginate(Idea::PAGINATION_COUNT);
+
+        return response(view('idea.index', compact('ideas')))
+            ->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
     /**
