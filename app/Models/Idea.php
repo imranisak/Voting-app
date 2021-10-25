@@ -13,6 +13,33 @@ class Idea extends Model
 
     protected $guarded=[];
 
+    /**
+     * @param User|null $user
+     * @return bool
+     */
+    public function isVotedByUser(?User $user): bool
+    {
+        if(!$user) return false;
+
+        return Vote::where('user_id', $user->id)
+            ->where('idea_id', $this->id)
+            ->exists();
+    }
+
+    public function vote(User $user){
+        Vote::create([
+            'idea_id'=>$this->id,
+            'user_id'=>$user->id
+        ]);
+    }
+
+    public function removeVote(User $user){
+        Vote::where('idea_id', $this->id)
+            ->where('user_id', $user->id)
+            ->first()
+            ->delete();
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -20,6 +47,7 @@ class Idea extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
     public function status(){
         return $this->belongsTo(Status::class);
     }
