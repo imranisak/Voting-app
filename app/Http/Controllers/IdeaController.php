@@ -15,17 +15,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        $ideas = Idea::with('user', 'category', 'status')
-            ->addSelect([
-                'voted_by_user' => Vote::select('id')
-                    ->where('user_id', auth()->id())
-                    ->whereColumn('idea_id', 'ideas.id')
-            ])
-            ->withCount('votes')
-            ->latest('id')
-            ->simplePaginate(Idea::PAGINATION_COUNT);
-
-        return response(view('idea.index', compact('ideas')))
+        return response(view('idea.index'))
             ->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
