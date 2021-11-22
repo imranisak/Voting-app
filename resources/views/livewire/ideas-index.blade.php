@@ -17,7 +17,7 @@
             </select>
         </div>
         <div class="w-full md:w-2/3 relative">
-            <input type="search" placeholder="Find an idea" class="w-full rounded-xl bg-white border-none placeholder-gray-900 px-4 py-2 pl-8">
+            <input wire:model="search" type="search" placeholder="Find an idea" class="w-full rounded-xl bg-white border-none placeholder-gray-900 px-4 py-2 pl-8">
             <div class="absolute top-0 flex itmes-center h-full ml-2">
                 <svg class="w-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -28,14 +28,16 @@
 
     <!--Ideas container-->
     <div class="ideas-container space-y-6 my-6">
-    @foreach($ideas as $idea)
+    @forelse($ideas as $idea)
         <!--Idea container-->
             <livewire:idea-index
                 :key="$idea->id"
                 :idea="$idea"
                 :votesCount="$idea->votes_count"
             />
-        @endforeach
+        @empty
+            <div>No ideas found ;-;</div>
+        @endforelse
     </div>
     <!--End of ideaS container-->
 

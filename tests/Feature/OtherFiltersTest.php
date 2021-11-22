@@ -18,7 +18,7 @@ class OtherFiltersTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function top_voted_filter_works()
+    public function topVotedFilterWorks()
     {
 
         $user = User::factory()->create();
@@ -71,7 +71,7 @@ class OtherFiltersTest extends TestCase
     }
 
     /** @test */
-    public function my_ideas_filter_works_correctly_when_user_logged_in()
+    public function myIdeasFilterWorksCorrectlyWhenUserLoggedIn()
     {
         $user = User::factory()->create();
         $userB = User::factory()->create();
@@ -116,7 +116,7 @@ class OtherFiltersTest extends TestCase
     }
 
     /** @test */
-    public function my_ideas_filter_works_correctly_when_user_is_not_logged_in()
+    public function myIdeasFilterWorksCorrectlyWhenUserIsNotLoggedIn()
     {
         $user = User::factory()->create();
         $userB = User::factory()->create();
@@ -156,7 +156,7 @@ class OtherFiltersTest extends TestCase
     }
 
     /** @test */
-    public function my_ideas_filter_works_correctly_with_categories_filter()
+    public function myIdeasFilterWorksCorrectlyWithCategoriesFilter()
     {
         $user = User::factory()->create();
         $userB = User::factory()->create();
@@ -202,7 +202,7 @@ class OtherFiltersTest extends TestCase
     }
 
     /** @test */
-    public function no_filters_works_correctly()
+    public function noFiltersWorksCorrectly()
     {
         $user = User::factory()->create();
 
