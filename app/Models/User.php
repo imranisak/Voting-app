@@ -56,4 +56,11 @@ class User extends Authenticatable
             .'?s200'
             .'&d=robohash';
     }
+
+    public function isAdmin(){
+        return in_array($this->email,[
+            'info@imranisak.com',
+            'imran1701d@gmail.com'
+        ]);
+    }
 }
