@@ -51,7 +51,7 @@
                                         Mark as Spam
                                     </a>
                                 </li>
-
+                                @can('update', $idea)
                                 <li>
                                     <a href="#"
                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
@@ -60,10 +60,10 @@
                                             $dispatch('custom-show-edit-modal')
                                         "
                                     >
-                                        Edit idea
+                                        Edit Idea
                                     </a>
                                 </li>
-
+                                @endcan
                                 <li>
                                     <a href="#"
                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"

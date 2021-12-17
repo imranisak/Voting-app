@@ -13,17 +13,17 @@ class IdeaShow extends Component
     public $votesCount;
     public $hasVoted;
 
-    protected $listeners=['statusWasUpdated'];
-
-    public function statusWasUpdated(){
-        $this->idea->refresh();
-    }
+    protected $listeners = [
+        'statusWasUpdated' => '$refresh',//Magic method goes bbrrrr
+        'ideaWasUpdated' => '$refresh',
+    ];
 
     public function mount(Idea $idea, $votesCount){
         $this->idea=$idea;
         $this->votesCount=$votesCount;
         $this->hasVoted=$idea->isVotedByUser(auth()->user());
     }
+
 
     public function vote(){
         if(!auth()->check()) return redirect('login');

@@ -17,7 +17,6 @@ class NotifyAllVotersTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
     public function itSendsAnEmailToAllVoters()
     {
         $user = User::factory()->create([
