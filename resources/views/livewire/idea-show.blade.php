@@ -64,13 +64,19 @@
                                     </a>
                                 </li>
                                 @endcan
+                                @can('delete', $idea)
                                 <li>
                                     <a href="#"
                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                        @click="
+                                            isOpen=false
+                                            $dispatch('custom-show-delete-modal')
+                                        "
                                     >
                                         Delete Idea
                                     </a>
                                 </li>
+                                @endcan
                             </ul>
                         </div>
                     </div>
