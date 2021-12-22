@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Idea;
 use Livewire\Component;
+use Illuminate\Http\Response;
+
 
 class MarkIdeaNotSpam extends Component
 {
